@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+</head>
+<body>
+<!-- watcher 和 dep 的关系，一个watcher对应n个dep 一个dep对应多个watcher-->
+<div id="app" style="font-size: 14px; color: chocolate;">
+  <my-component></my-component>
+</div>
+<script src="/dist/umd/vue.js"></script>
+<script>
+  // 内部会调用Vue.extend返回一个组件的构造函数，通过new这个构造函数产生实例
+  Vue.component('my-component', {
+    template: '<div>hello 你好 {{name}}</div>'
+  })
+  let vm = new Vue({
+    el: '#app',
+    data() {
+      return {name: 'zf'}
+    },
+    components: {
+      'my-component': {
+        template: '<div>hello 不好</div>'
+      }
+    }
+  })
+  console.log(vm)
+  // 组件渲染的时候 会调用当前组件对应的构造函数，产生一个实例
+  // 我们可以new这个类 每个组件调用都会new一下
+
+  // 每个组件在使用时都会调用Vue.extend方法 创建一个构造函数
+  // 实例化子组件时 会将当前选项和用户定义选项合并 mergeOptions
+  // 通过创建实例 内部会调用子类的_init() 内部会再创建一个渲染watcher 将渲染后的结果放到vm.$el上 = 组件的渲染结果
+
+  // 局部组件和全局组件的区别
+
+  // 异步组件的特点就是渲染空 等会加载后重新渲染
+</script>
+</body>
+</html>

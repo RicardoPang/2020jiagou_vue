@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+</head>
+<body>
+<!-- watcher 和 dep 的关系，一个watcher对应n个dep 一个dep对应多个watcher-->
+<div id="app" style="font-size: 14px; color: chocolate;">
+
+</div>
+<script src="/dist/umd/vue.js"></script>
+<script>
+  // 默认有一个列表3项 过一会又产生一些新的数据
+  // 可以在每次选人的时候 进行比对 如果可以服用的元素 就复用以前的元素
+  // dom-diff => vnode虚拟节点（属性非常的少）tag data children key
+  // 比对的是虚拟节点 如果标签一致 就复用去增添新的属性
+
+
+</script>
+</body>
+</html>
